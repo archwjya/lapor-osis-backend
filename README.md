@@ -47,7 +47,7 @@ Logs are stored in `/logs` directory.
 	"status": "waiting",
 	"title": "Bullying verbal di kelas",
 	"description": "Saya sering diejek dan dihina oleh teman sekelas",
-	"location": "Ruang kelas XI IPS 1",
+	"location": "Ruang kelas XI.1",
 	"urgency": "tinggi",
 	"anonymous": true,
 	"hasInjuries": "tidak",
