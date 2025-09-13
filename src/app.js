@@ -5,6 +5,7 @@ const morgan = require('morgan');
 
 const reportRoutes = require('./routes/reportRoutes');
 const whatsappRoutes = require('./routes/whatsappRoutes');
+const fileRoutes = require('./routes/fileRoutes');
 const { requestLogger, errorLogger } = require('./middleware/logger');
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(requestLogger);
 
 app.use('/reports', reportRoutes);
 app.use('/whatsapp', whatsappRoutes);
+app.use('/api/files', fileRoutes);
 
 app.use(errorLogger);
 
