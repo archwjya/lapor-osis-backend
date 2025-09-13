@@ -2,6 +2,9 @@ const { default: makeWASocket, useMultiFileAuthState } = require('@whiskeysocket
 const Report = require('../models/report');
 const logger = require('../utils/logger');
 
+
+let qrCode = null;
+
 async function startBot() {
   const { state, saveCreds } = await useMultiFileAuthState('baileys_auth');
   const sock = makeWASocket({ auth: state });
@@ -37,6 +40,18 @@ async function startBot() {
   });
 
   sock.ev.on('creds.update', saveCreds);
+
+  sock.ev.on('connection.update', (update) => {
+    if (update.qr) {
+      qrCode = update.qr;
+    } else if (update.connection === 'open' || update.connection === 'close') {
+      qrCode = null;
+    }
+  });
 }
 
-module.exports = { startBot };
+function getQrCode() {
+  return qrCode;
+}
+
+module.exports = { startBot, getQrCode };

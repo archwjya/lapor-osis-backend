@@ -2,7 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+
 const reportRoutes = require('./routes/reportRoutes');
+const whatsappRoutes = require('./routes/whatsappRoutes');
 const { requestLogger, errorLogger } = require('./middleware/logger');
 
 const app = express();
@@ -11,6 +13,7 @@ app.use(morgan('dev'));
 app.use(requestLogger);
 
 app.use('/reports', reportRoutes);
+app.use('/whatsapp', whatsappRoutes);
 
 app.use(errorLogger);
 
